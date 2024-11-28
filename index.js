@@ -40,7 +40,8 @@ async function main() {
       : 'Direct connection mode enabled.'.green
   );
 
-  const userIDs = await readLines('uid.txt');
+  const tempUserIDs = await readLines('uid.txt');
+  const userIDs = tempUserIDs.map(id => id.replace(/[\r\n]/g, ""));
   if (userIDs.length === 0) {
     console.error('No user IDs found in uid.txt. Exiting...'.red);
     return;
